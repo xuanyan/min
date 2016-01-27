@@ -18,6 +18,5 @@
     "psr-4" : {
       "Min\\" : "src/"
     }
-  },
-  "minimum-stability": "dev-master"
+  }
 }
