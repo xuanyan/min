@@ -102,26 +102,28 @@ class Router
 
         $actionName = sprintf($this->actionName, $this->action);
 
-        try {
-            $method = new \ReflectionMethod($class, $actionName);
-            if ($method->getNumberOfParameters() > 0) {
-                $ps = array();
-                foreach($method->getParameters() as $i => $val)
-                {
-                    $name = $val->getName();
-                    $default = $val->isDefaultValueAvailable() ? $val->getDefaultValue() : '';
-                    if (isset($tmp[$i])) {
-                        $ps[] = self::getValue($tmp[$i], $default);
-                    } elseif (isset($_GET[$name])) {
-                        $ps[] = self::getValue($_GET[$name], $default);
-                    } else {
-                        $ps[] = $default;
+        if (method_exists($class, $actionName)) {
+            try {
+                $method = new \ReflectionMethod($class, $actionName);
+                if ($method->getNumberOfParameters() > 0) {
+                    $ps = array();
+                    foreach($method->getParameters() as $i => $val)
+                    {
+                        $name = $val->getName();
+                        $default = $val->isDefaultValueAvailable() ? $val->getDefaultValue() : '';
+                        if (isset($tmp[$i])) {
+                            $ps[] = self::getValue($tmp[$i], $default);
+                        } elseif (isset($_GET[$name])) {
+                            $ps[] = self::getValue($_GET[$name], $default);
+                        } else {
+                            $ps[] = $default;
+                        }
                     }
+                    return $method->invokeArgs($class, $ps);
                 }
-                return $method->invokeArgs($class, $ps);
+            } catch (\Exception $e) {
+                throw $e;
             }
-        } catch (\Exception $e) {
-            throw $e;
         }
 
         $doAction = array($class, $actionName);
