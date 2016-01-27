@@ -1,0 +1,22 @@
+{
+  "name" : "xuanyan/min",
+  "description" : "minimum php framework",
+  "license" : "MIT",
+  "homepage" : "https://github.com/xuanyan/min",
+  "support" : {
+    "issues" : "https://github.com/xuanyan/min/issues",
+    "source" : "https://github.com/xuanyan/min"
+  },
+  "authors" : [{
+    "name" : "Xuan Yan",
+    "email" : "xuanyan1983@gmail.com"
+  }],
+  "require" : {
+    "php" : ">=5.4"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "Min\\" : "src/"
+    }
+  }
+}
