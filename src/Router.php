@@ -2,14 +2,6 @@
 
 namespace Min;
 
-/*
-* Router
-*
-* @copyright (c) 2012 Atom Projects More info http://geek-zoo.com
-* @license http://opensource.org/licenses/gpl-2.0.php The GNU General Public License
-* @author xuanyan <xuanyan@geek-zoo.com>
-*
-*/
 
 class Router
 {
