@@ -2,7 +2,7 @@
 
 namespace Min;
 
-class Singleton
+abstract class Singleton
 {
     protected static $instance = array();
 
