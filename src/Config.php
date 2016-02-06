@@ -8,7 +8,8 @@ class Config extends Singleton
     private $_config = null;
 
     private static $config = [
-        '@path' => null // begin with @ are system config keys
+        '@path' => null, // begin with @ are system config keys
+        '@mapping' => []
     ];
 
     const PUBLIC_KEY = '-----BEGIN PUBLIC KEY-----
@@ -92,9 +93,20 @@ a+MzTkPRiGYTaDMOjoQiygPbKSJnBeyx9iZfpqJMXONbWt0LII16L5dOaWi9DXt8
             }
         }
 
-        //$domain = $_SERVER['HTTP_HOST'];
+        $domain = $_SERVER['HTTP_HOST'];
 
-        $domain = 'ostom.jx-ks.com';
+        if ($mapping = self::$config['@mapping']) {
+            if (!isset($mapping[$domain])) {
+                foreach ($mapping as $key => $value) {
+                    if (in_array($domain, $value)) {
+                        $domain = $key;
+                        break;
+                    }
+                }
+            }
+        }
+
+
 
         $file = sys_get_temp_dir() . '/' . $domain . '.php';
         if (!file_exists($file) || (time() - filemtime($file)) > 60 || 0) {
