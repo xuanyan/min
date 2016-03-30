@@ -16,7 +16,10 @@
   },
   "autoload" : {
     "psr-4" : {
-      "Min\\" : "src/"
+      "Min\\" : "src/Min/"
+    },
+    "psr-0": {
+        "Min\\": "src/"
     }
   }
 }
