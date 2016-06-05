@@ -15,6 +15,7 @@
     "php" : ">=5.4"
   },
   "autoload" : {
+    "files" : ["src/__init__.php"],
     "psr-4" : {
       "Min\\" : "src/Min/"
     },
